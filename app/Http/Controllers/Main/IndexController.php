@@ -7,7 +7,7 @@ use Illuminate\Contracts\View\View;
 
 class IndexController extends Controller
 {
-    public function __invoke(): View
+    public function show(): View
     {
         return view('main.index');
     }

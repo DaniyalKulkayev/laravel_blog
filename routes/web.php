@@ -15,15 +15,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['namespace' => 'App\Http\Controllers\Main'], function () {
-    Route::get('/', 'IndexController');
+    Route::get('/', 'IndexController@show');
 });
 
 Route::group(['namespace' => 'App\Http\Controllers\Admin', 'prefix' => 'admin'], function () {
     Route::group(['namespace' => 'Main'], function () {
-        Route::get('/', 'IndexController');
+        Route::get('/', 'IndexController@show');
     });
     Route::group(['namespace' => 'Category', 'prefix' => 'categories'], function () {
-        Route::get('/', 'IndexController');
+        Route::get('/', 'IndexController@show')->name('admin.category.index');
+        Route::get('/create', 'IndexController@create')->name('admin.category.create');
     });
 });
 
