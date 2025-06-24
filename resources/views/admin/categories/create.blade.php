@@ -25,9 +25,10 @@
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
 
-                    <form action="" class="col-5">
+                    <form action="{{ route('admin.category.store') }}" method="POST" class="col-5">
+                        @csrf
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Enter category">
+                            <input type="text" name="titletasks.json" class="form-control" placeholder="Enter category">
                         </div>
                         <input type="submit" class="btn btn-block btn-primary col-2" value="Create">
                     </form>
