@@ -26,6 +26,9 @@ Route::group(['namespace' => 'App\Http\Controllers\Admin', 'prefix' => 'admin'],
         Route::get('/', 'IndexController@index')->name('admin.category.index');
         Route::get('/create', 'IndexController@create')->name('admin.category.create');
         Route::post('/', 'IndexController@store')->name('admin.category.store');
+        Route::get('/{category}', 'IndexController@show')->name('admin.category.show');
+        Route::get('/{category}/edit', 'IndexController@edit')->name('admin.category.edit');
+        Route::patch('/{category}', 'IndexController@update')->name('admin.category.update');
     });
 });
 

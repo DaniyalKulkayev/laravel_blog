@@ -9,10 +9,7 @@
                         <h1 class="m-0">Categories</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
 
-                            <li class="breadcrumb-item active">Dashboard v1</li>
-                        </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
@@ -26,9 +23,11 @@
                 <div class="row">
                     <a href="{{ route('admin.category.create') }}" class="btn btn-block btn-primary col-1 mb-2">Create</a>
                     <!-- <div class="col-12">Category</div> -->
+                </div>
+                <div class="row col-6 pl-0">
                     <div class="card col-12">
                         <div class="card-header">
-                            <h3 class="card-title">Fixed Header Table</h3>
+                            <h3 class="card-title">Categories Table</h3>
 
                             <div class="card-tools">
                                 <div class="input-group input-group-sm" style="width: 150px;">
@@ -49,10 +48,10 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <!-- <th>User</th>
-                                            <th>Date</th>
-                                            <th>Status</th> -->
                                         <th>Title</th>
+                                        <th>Show</th>
+                                        <th>Edit</th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -60,7 +59,10 @@
                                         <tr>
                                             <td>{{ $category->id }}</td>
                                             <td>{{ $category->title }}</td>
-
+                                            <td><a href="{{ route('admin.category.show', $category->id) }}" class="pl-2"><i
+                                                        class="far fa-eye"></i></a></td>
+                                            <td><a href="{{ route('admin.category.edit', $category->id) }}" class="pl-2"><i
+                                                        class="fas fa-edit"></i></a></td>
                                         </tr>
                                     @endforeach
                                 </tbody>
