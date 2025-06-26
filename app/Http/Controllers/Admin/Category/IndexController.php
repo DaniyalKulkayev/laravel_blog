@@ -15,12 +15,12 @@ class IndexController extends Controller
     {
         $categories = Category::all();
 
-        return view('admin.categories.index', compact('categories'));
+        return view('admin.category.index', compact('categories'));
     }
 
     public function create(): View
     {
-        return view('admin.categories.create');
+        return view('admin.category.create');
     }
 
     public function store(StoreRequest $request): RedirectResponse
@@ -34,7 +34,7 @@ class IndexController extends Controller
     public function show(Category $category): View
     {
 
-        return view('admin.categories.show', compact('category'));
+        return view('admin.category.show', compact('category'));
     }
 
     public function edit(Category $category): View
@@ -42,13 +42,21 @@ class IndexController extends Controller
         // $data = $request->validated();
         // Category::update($data);
 
-        return view('admin.categories.edit', compact('category'));
+        return view('admin.category.edit', compact('category'));
     }
+
     public function update(UpdateRequest $request, Category $category)
     {
         $data = $request->validated();
         $category->update($data);
 
-        return view('admin.categories.show', compact('category'));
+        return view('admin.category.show', compact('category'));
+    }
+
+    public function destroy(Category $category): RedirectResponse
+    {
+        $category->delete();
+
+        return redirect()->route('admin.category.index');
     }
 }

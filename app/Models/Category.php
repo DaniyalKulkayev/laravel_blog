@@ -4,13 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model
 {
     use HasFactory;
 
-    // protected $table = 'categories'; // Здесь явно указывается модели юзать таблицу categories, хотя laravel автоматически это распознает
-    // protected $guarded = false;
+    use SoftDeletes;
     protected $fillable = [
         'id',
         'title'

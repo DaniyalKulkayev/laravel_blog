@@ -6,7 +6,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Edit category: "{{ $category->title }}"</h1>
+                        <h1 class="m-0">Adding Post</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
 
@@ -22,14 +22,12 @@
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
 
-                    <form action="{{ route('admin.category.update', $category->id) }}" method="POST" class="col-5">
+                    <form action="{{ route('admin.post.store') }}" method="POST" class="col-5">
                         @csrf
-                        @method('PATCH')
                         <div class="form-group">
-                            <input type="text" name="title" class="form-control" placeholder="Enter category"
-                                value="{{ $category->title }}">
+                            <input type="text" name="title" class="form-control" placeholder="Enter category">
                         </div>
-                        <input type="submit" class="btn btn-block btn-primary col-2" value="Update">
+                        <input type="submit" class="btn btn-block btn-primary col-2" value="Create">
                     </form>
                 </div>
 
