@@ -20,7 +20,7 @@
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
                     <div class="col-12">
-                        <form action="{{ route('admin.post.store') }}" method="POST">
+                        <form action="{{ route('admin.post.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <input type="text" name="title" class="form-control col-5" placeholder="Enter post name..."
@@ -34,6 +34,30 @@
                                 @error('content')
                                     <p class="text-danger">{{ $message }}</p>
                                 @enderror
+                            </div>
+                            <div class="form-group col-5">
+                                <label for="exampleInputFile">Preview image</label>
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" name="preview_image">
+                                        <label class="custom-file-label">Choose file</label>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">Upload</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-5">
+                                <label for="exampleInputFile">Main image</label>
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" name="main_image">
+                                        <label class="custom-file-label">Choose file</label>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">Upload</span>
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <input type="submit" class="btn btn-block btn-primary col-1" value="Create">

@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="{{ asset("plugins/summernote/summernote-bs4.min.css") }}">
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-   xed">
     <div class="wrapper">
 
         <!-- Preloader -->
@@ -115,12 +115,14 @@
     <script src="{{ asset("plugins/summernote/summernote-bs4.min.js") }}"></script>
     <!-- overlayScrollbars -->
     <script src="{{ asset("plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js") }}"></script>
+    <script src="{{ asset("plugins/bs-custom-file-input/bs-custom-file-input.js") }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset("dist/js/adminlte.js") }}"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset("dist/js/demo.js") }}"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="{{ asset("dist/js/pages/dashboard.js") }}"></script>
+
     <script>$(document).ready(function () {
             $('#summernote').summernote({
                 toolbar: [
@@ -133,7 +135,11 @@
                     ['height', ['height']]
                 ]
             });
-        });</script>
+        });
+        $(function () {
+            bsCustomFileInput.init();
+        });
+    </script>
 </body>
 
 </html>
