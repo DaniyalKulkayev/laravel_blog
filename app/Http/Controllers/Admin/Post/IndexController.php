@@ -26,6 +26,7 @@ class IndexController extends Controller
     public function store(StoreRequest $request): RedirectResponse
     {
         $data = $request->validated();
+
         Post::firstOrCreate($data);
 
         return redirect()->route('admin.post.index');
@@ -39,13 +40,10 @@ class IndexController extends Controller
 
     public function edit(Post $post): View
     {
-        // $data = $request->validated();
-        // Category::update($data);
-
         return view('admin.post.edit', compact('post'));
     }
 
-    public function update(UpdateRequest $request, Post $post)
+    public function update(UpdateRequest $request, Post $post): View
     {
         $data = $request->validated();
         $post->update($data);
