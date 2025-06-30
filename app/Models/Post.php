@@ -12,6 +12,21 @@ class Post extends Model
         'id',
         'title',
         'content',
-        'category_id'
+        'category_id',
+        'preview_image',
+        'main_image'
     ];
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
+    }
+
 }
+
+
+
+
+
+
+
+

@@ -35,7 +35,17 @@
                                     <p class="text-danger">{{ $message }}</p>
                                 @enderror
                             </div>
-                            <div class="form-group col-5">
+                            <div class="form-group col-6 pl-0">
+                                <label>Select Category</label>
+                                <select name='category_id' class="form-control">
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}" {{ $category->id == old('category_id') ? 'selected  ' : ''}}> {{ $category->title }}
+                                        </option>
+                                    @endforeach
+
+                                </select>
+                            </div>
+                            <div class="form-group col-5 pl-0">
                                 <label for="exampleInputFile">Preview image</label>
                                 <div class="input-group">
                                     <div class="custom-file">
@@ -47,7 +57,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group col-5">
+                            <div class="form-group col-5 pl-0">
                                 <label for="exampleInputFile">Main image</label>
                                 <div class="input-group">
                                     <div class="custom-file">
