@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\Post\StoreRequest;
 use App\Http\Requests\Admin\Post\UpdateRequest;
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Tags;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
@@ -23,17 +24,28 @@ class IndexController extends Controller
     public function create(): View
     {
         $categories = Category::all();
-        return view('admin.post.create', compact('categories'));
+        $tags = Tags::all();
+
+        return view('admin.post.create', compact('categories', 'tags'));
     }
 
     public function store(StoreRequest $request): RedirectResponse
     {
-        $data = $request->validated();
-        $data['preview_image'] = Storage::put('/images', $data['preview_image']);
-        $data['main_image'] = Storage::put('/images', $data['main_image']);
+        try {
+            $data = $request->validated();
 
+            $tagIds = $data['tag_ids'];
+            unset($data['tag_ids']);
 
-        Post::firstOrCreate($data);
+            $data['preview_image'] = Storage::put('/images', $data['preview_image']);
+            $data['main_image'] = Storage::put('/images', $data['main_image']);
+
+            $post = Post::firstOrCreate($data);
+            $post->tags()->attach($tagIds);
+
+        } catch (\Exception $exception) {
+            abort(404);
+        }
 
         return redirect()->route('admin.post.index');
     }

@@ -19,6 +19,8 @@ return new class extends Migration {
 
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
 
+            $table->string('preview_image')->nullable()->after('content');
+            $table->string('main_image')->nullable()->after('content');
             $table->softDeletes();
         });
     }

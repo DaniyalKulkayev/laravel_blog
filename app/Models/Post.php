@@ -14,13 +14,18 @@ class Post extends Model
         'content',
         'category_id',
         'preview_image',
-        'main_image'
+        'main_image',
+        'tags_id'
     ];
     public function categories()
     {
         return $this->belongsToMany(Category::class);
     }
 
+    public function tags()
+    {
+        return $this->belongsToMany(Tags::class);
+    }
 }
 
 

@@ -45,6 +45,9 @@
 
                                 </select>
                             </div>
+
+
+
                             <div class="form-group col-5 pl-0">
                                 <label for="exampleInputFile">Preview image</label>
                                 <div class="input-group">
@@ -52,10 +55,14 @@
                                         <input type="file" class="custom-file-input" name="preview_image">
                                         <label class="custom-file-label">Choose file</label>
                                     </div>
+                                    
                                     <div class="input-group-append">
                                         <span class="input-group-text">Upload</span>
                                     </div>
                                 </div>
+                                @error('preview_image')
+                                    <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                             </div>
                             <div class="form-group col-5 pl-0">
                                 <label for="exampleInputFile">Main image</label>
@@ -68,6 +75,27 @@
                                         <span class="input-group-text">Upload</span>
                                     </div>
                                 </div>
+                                @error('main_image')
+                                    <p class="text-danger">{{ $message }}</p>
+                                    @enderror   
+                            </div>
+
+                            <div class="form-group" data-select2-id="42">
+                                <label>Tags</label>
+                                <select class="select2" multiple="" name="tag_ids[]" data-placeholder="Select Tags"
+                                    style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true">
+                                    @foreach ($tags as $tag)
+                                        <option {{ is_array(old('tag_ids')) && in_array($tag->id, old('tag_ids')) ? 'selected' : '' }}
+                                            value="{{ $tag->id }}">
+                                            {{ $tag->title }}
+                                        </option>
+                                    @endforeach
+
+
+                                </select>
+                                @error('tags_id')
+                                    <p class="text-danger">Choose at least 1 tag</p>
+                                    @enderror
                             </div>
                             <div class="form-group">
                                 <input type="submit" class="btn btn-block btn-primary col-1" value="Create">
