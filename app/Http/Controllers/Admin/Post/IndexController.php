@@ -37,10 +37,11 @@ class IndexController extends Controller
             $tagIds = $data['tag_ids'];
             unset($data['tag_ids']);
 
-            $data['preview_image'] = Storage::put('/images', $data['preview_image']);
-            $data['main_image'] = Storage::put('/images', $data['main_image']);
+            $data['preview_image'] = Storage::disk('public')->put('/images', $data['preview_image']);
+            $data['main_image'] = Storage::disk('public')->put('/images', $data['main_image']);
 
             $post = Post::firstOrCreate($data);
+
             $post->tags()->attach($tagIds);
 
         } catch (\Exception $exception) {
@@ -58,12 +59,16 @@ class IndexController extends Controller
 
     public function edit(Post $post): View
     {
-        return view('admin.post.edit', compact('post'));
+        $categories = Category::all();
+        $tags = Tags::all();
+
+        return view('admin.post.edit', compact('post', 'categories', 'tags'));
     }
 
     public function update(UpdateRequest $request, Post $post): View
     {
         $data = $request->validated();
+
         $post->update($data);
 
         return view('admin.post.show', compact('post'));

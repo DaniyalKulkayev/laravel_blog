@@ -23,20 +23,24 @@
                         <form action="{{ route('admin.post.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
-                                <input type="text" name="title" class="form-control col-5" placeholder="Enter post name..."
+                                <label>Title</label>
+                                <input type="text" name="title" class="form-control col-6" placeholder="Enter post name..."
                                     value="{{ old('title') }}">
                                 @error('title')
                                     <p class="text-danger">{{ $message }}</p>
                                 @enderror
                             </div>
+                            
                             <div class="form-group">
+                                <label>Content</label>
                                 <textarea id="summernote" name="content">{{ old('content') }}</textarea>
                                 @error('content')
                                     <p class="text-danger">{{ $message }}</p>
                                 @enderror
                             </div>
+                            
                             <div class="form-group col-6 pl-0">
-                                <label>Select Category</label>
+                                <label>Category</label>
                                 <select name='category_id' class="form-control">
                                     @foreach ($categories as $category)
                                         <option value="{{ $category->id }}" {{ $category->id == old('category_id') ? 'selected  ' : ''}}> {{ $category->title }}
@@ -46,9 +50,7 @@
                                 </select>
                             </div>
 
-
-
-                            <div class="form-group col-5 pl-0">
+                            <div class="form-group col-6 pl-0">
                                 <label for="exampleInputFile">Preview image</label>
                                 <div class="input-group">
                                     <div class="custom-file">
@@ -64,7 +66,7 @@
                                     <p class="text-danger">{{ $message }}</p>
                                     @enderror
                             </div>
-                            <div class="form-group col-5 pl-0">
+                            <div class="form-group col-6 pl-0">
                                 <label for="exampleInputFile">Main image</label>
                                 <div class="input-group">
                                     <div class="custom-file">
