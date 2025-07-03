@@ -65,13 +65,27 @@ class IndexController extends Controller
         return view('admin.post.edit', compact('post', 'categories', 'tags'));
     }
 
-    public function update(UpdateRequest $request, Post $post): View
+    public function update(UpdateRequest $request, Post $post): RedirectResponse
     {
         $data = $request->validated();
 
+        // Если загружены новые картинки — обрабатываем их
+        if (isset($data['preview_image']) && $data['preview_image']) {
+            $data['preview_image'] = Storage::disk('public')->put('images', $data['preview_image']);
+        }
+
+        if (isset($data['main_image']) && $data['main_image']) {
+            $data['main_image'] = Storage::disk('public')->put('images', $data['main_image']);
+        }
+
+        Storage::disk('public')->delete($post->preview_image);
+        Storage::disk('public')->delete($post->main_image);
+
         $post->update($data);
 
-        return view('admin.post.show', compact('post'));
+
+
+        return redirect()->route('admin.post.show', $post->id);
     }
 
     public function destroy(Post $post): RedirectResponse

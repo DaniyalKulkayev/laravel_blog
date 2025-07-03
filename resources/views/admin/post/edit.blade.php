@@ -23,6 +23,7 @@
                         <form action="{{ route('admin.post.update',$post->id ) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PATCH')
+                             
                             <div class="form-group">
                                 <label>Title</label>
                                 <input type="text" name="title" class="form-control col-6" placeholder="Enter post name..."
