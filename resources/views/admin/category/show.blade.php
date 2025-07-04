@@ -34,10 +34,16 @@
                                     <tr>
                                         <td>ID</td>
                                         <td>{{ $category->id }}</td>
+
                                     </tr>
                                     <tr>
                                         <td>Title</td>
                                         <td>{{ $category->title }}</td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>Post ID</td>
+                                        <td></td>
 
                                     </tr>
 

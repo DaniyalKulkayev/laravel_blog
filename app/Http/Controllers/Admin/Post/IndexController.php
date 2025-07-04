@@ -47,6 +47,7 @@ class IndexController extends Controller
 
     public function show(Post $post): View
     {
+        $post->load('tags');
         return view('admin.post.show', compact('post'));
     }
 
