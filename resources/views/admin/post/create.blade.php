@@ -95,8 +95,8 @@
 
 
                                 </select>
-                                @error('tags_id')
-                                    <p class="text-danger">Choose at least 1 tag</p>
+                                @error('tag_ids')
+                                    <p class="text-danger">{{ $message }}</p>
                                     @enderror
                             </div>
                             <div class="form-group">

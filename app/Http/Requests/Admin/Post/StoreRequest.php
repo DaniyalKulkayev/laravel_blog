@@ -31,5 +31,21 @@ class StoreRequest extends FormRequest
             'tag_ids.*' => 'nullable|exists:tags,id',
         ];
     }
-
+    public function messages()
+    {
+        return [
+            'title.required' => 'Field can not be empty',
+            'title.string' => 'Field should be string',
+            'content.required' => 'Field can not be empty',
+            'content.string' => 'Field should be string',
+            'category_id.required' => 'Field can not be empty',
+            'category_id.exists' => 'Category not found',
+            'preview_image.required' => 'Field can not be empty',
+            'preview_image.image' => 'Field should be image',
+            'main_image.required' => 'Field can not be empty',
+            'main_image.image' => 'Field should be image',
+            'tag_ids.array' => 'Field can not be empty',
+            'tag_ids.exists' => 'Tag not found',
+        ];
+    }
 }
